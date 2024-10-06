@@ -1,0 +1,28 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: practice
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/Test
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=mydb
+    username: postgres
+    password: 123456
+
+  flyway:
+#    url: jdbc:postgresql://localhost:5433/test?currentSchema=mydb
+#    user: postgres
+#    password: 123456
+    enabled: true
+
+jwt:
+  auth:
+    converter:
+      resource-id: test-cli
+      principal-attribute: preferred_username
